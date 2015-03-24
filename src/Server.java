@@ -16,6 +16,7 @@ public class Server {
 			SiteItf skeleton = (SiteItf) UnicastRemoteObject.exportObject(new SiteImpl());
 			Registry registre= LocateRegistry.createRegistry(10000);
 			registre.rebind("Node", skeleton );
+
 		} catch (RemoteException e) {
 
 			System.out.println("erreur server");
