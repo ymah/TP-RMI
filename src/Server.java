@@ -13,7 +13,7 @@ public class Server {
 	public static void main(String[] args) {
 		
 		try {
-			SiteItf skeleton = (SiteItf) UnicastRemoteObject.exportObject(new SiteImpl());
+			SiteItf skeleton = (SiteItf) UnicastRemoteObject.exportObject(new SiteImpl(0));
 			Registry registre= LocateRegistry.createRegistry(10000);
 			registre.rebind("Node", skeleton );
 

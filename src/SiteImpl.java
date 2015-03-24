@@ -3,13 +3,15 @@ import java.util.ArrayList;
 
 public class SiteImpl implements SiteItf {
 
+	private int id;
 	private ArrayList<SiteItf> listeFils;
 	private ArrayList<SiteItf> listePere;
 
 	/**
 	 * 
 	 */
-	public SiteImpl() {
+	public SiteImpl(int id) {
+		this.id = id;
 	}
 
 	/*
