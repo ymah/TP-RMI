@@ -9,7 +9,7 @@ public class Client {
 		try {
 			Registry registry = LocateRegistry.getRegistry(10000);
 			SiteItf stub = (SiteItf) registry.lookup("Node");
-
+			stub.sendMessage("hello");
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

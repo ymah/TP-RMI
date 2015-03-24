@@ -15,13 +15,13 @@ public class SiteImpl implements SiteItf {
 	}
 
 	/*
-	 * (non-Javadoc)
+	 * (non-Javadoc)toString
 	 * 
 	 * @see SiteItf#getMessage()
 	 */
-	public void getMessage(Message m) throws RemoteException {
+	public void getMessage(String m) throws RemoteException {
 		synchronized (this) {
-			System.out.println(m.toString());
+			System.out.println(m);
 		}
 		this.sendMessage(m);
 	}
@@ -29,7 +29,7 @@ public class SiteImpl implements SiteItf {
 	/* (non-Javadoc)
 	 * @see SiteItf#sendMessage()
 	 */
-	public void sendMessage(Message m) throws RemoteException {
+	public void sendMessage(String m) throws RemoteException {
 		for (SiteItf siteItf : listeFils) {
 			siteItf.getMessage(m);
 		}
@@ -39,7 +39,7 @@ public class SiteImpl implements SiteItf {
 	/* (non-Javadoc)
 	 * @see SiteItf#addPere(SiteItf)
 	 */
-	public boolean addPere(SiteItf pere) {
+	public boolean addPere(SiteItf pere) throws RemoteException{
 
 		if (!listePere.contains(pere))
 			return listePere.add(pere);
@@ -49,7 +49,7 @@ public class SiteImpl implements SiteItf {
 	/* (non-Javadoc)
 	 * @see SiteItf#addFils(SiteItf)
 	 */
-	public boolean addFils(SiteItf fils) {
+	public boolean addFils(SiteItf fils) throws RemoteException{
 		if (!listeFils.contains(fils))
 			return listeFils.add(fils);
 		return false;
@@ -58,7 +58,7 @@ public class SiteImpl implements SiteItf {
 	/* (non-Javadoc)
 	 * @see SiteItf#rmPere(SiteItf)
 	 */
-	public boolean rmPere(SiteItf pere) {
+	public boolean rmPere(SiteItf pere) throws RemoteException{
 		if(this.listePere.contains(pere))
 			return this.listePere.remove(pere);
 		return false;
@@ -67,10 +67,12 @@ public class SiteImpl implements SiteItf {
 	/* (non-Javadoc)
 	 * @see SiteItf#rmFils(SiteItf)
 	 */
-	public boolean rmFils(SiteItf fils) {
+	public boolean rmFils(SiteItf fils) throws RemoteException{
 		if(this.listePere.contains(fils))
 		return false;
 		return this.listePere.remove(fils);
 	}
+
+
 
 }

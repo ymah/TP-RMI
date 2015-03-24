@@ -2,5 +2,6 @@
 public interface Message {
 
 	
-	public String toString();
+	public String getMessage();
+	
 }
