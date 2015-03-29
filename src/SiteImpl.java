@@ -12,6 +12,8 @@ public class SiteImpl implements SiteItf {
 	 */
 	public SiteImpl(int id) {
 		this.id = id;
+		this.listeFils = new ArrayList<SiteItf>();
+		this.listePere = new ArrayList<SiteItf>();
 	}
 
 	/*
@@ -40,7 +42,6 @@ public class SiteImpl implements SiteItf {
 	 * @see SiteItf#addPere(SiteItf)
 	 */
 	public boolean addPere(SiteItf pere) throws RemoteException{
-
 		if (!listePere.contains(pere))
 			return listePere.add(pere);
 		return false;
