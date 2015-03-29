@@ -13,14 +13,13 @@ public class Server {
 	public static void main(String[] args) {
 		
 		try {
-
-			SiteItf skeleton = (SiteItf) UnicastRemoteObject.exportObject(new SiteImpl(), 10000);
-			Registry registry = LocateRegistry.createRegistry(10000);
-			registry.rebind("noeud1", skeleton);
-
+			SiteItf skeleton = (SiteItf) UnicastRemoteObject.exportObject(new SiteImpl(0));
+			Registry registre= LocateRegistry.createRegistry(10000);
+			registre.rebind("Node", skeleton );
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+
+			System.out.println("erreur server");
+
 		}
 	}
 
