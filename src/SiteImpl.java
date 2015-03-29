@@ -21,8 +21,9 @@ public class SiteImpl implements SiteItf {
 	 * 
 	 * @see SiteItf#getMessage()
 	 */
-	public void getMessage(String m) throws RemoteException {
+	public void getMessage(String m, SiteItf father) throws RemoteException {
 		synchronized (this) {
+			System.out.println("Message recu de Node_"+father.getId());
 			System.out.println(m);
 		}
 		this.sendMessage(m);
@@ -31,9 +32,17 @@ public class SiteImpl implements SiteItf {
 	/* (non-Javadoc)
 	 * @see SiteItf#sendMessage()
 	 */
-	public void sendMessage(String m) throws RemoteException {
-		for (SiteItf siteItf : listeFils) {
-			siteItf.getMessage(m);
+	public void sendMessage(final String m) throws RemoteException {
+		for (final SiteItf fils : listeFils) {
+			new Thread() {
+				public void run() {
+					try {
+						fils.getMessage(m, SiteImpl.this);
+					} catch (RemoteException e) {
+						e.printStackTrace();
+					}
+				}
+			}.start();
 		}
 	}
 
@@ -72,6 +81,11 @@ public class SiteImpl implements SiteItf {
 		if(this.listePere.contains(fils))
 		return false;
 		return this.listePere.remove(fils);
+	}
+
+	@Override
+	public int getId() throws RemoteException{
+		return this.id;
 	}
 
 

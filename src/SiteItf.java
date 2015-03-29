@@ -1,19 +1,16 @@
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-
-/**
- * @author mahieddine
- *
- */
 public interface SiteItf extends Remote {
 
-
+	
+	public int getId() throws RemoteException;
+	
 	/**
 	 * get a message from the father node
 	 * @throws RemoteException
 	 */
-	public void getMessage(String m) throws RemoteException;
+	public void getMessage(String m, SiteItf father) throws RemoteException;
 
 	
 	/**

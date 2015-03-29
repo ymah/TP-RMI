@@ -15,6 +15,8 @@ import java.rmi.server.UnicastRemoteObject;
  */
 public class Node {
 
+	private static int port = 1098;
+	
 	public static void main(String[] args) {		
 		if (args.length != 1) {
 			System.err.println("USAGE : java Node [numero de noeud]");
@@ -25,11 +27,11 @@ public class Node {
 		int nn = Integer.parseInt(n);
 		
 		try {
-			SiteItf skeleton = (SiteItf) UnicastRemoteObject.exportObject(new SiteImpl(nn), (1098+nn));
-			Registry registre= LocateRegistry.createRegistry((1098+nn));
+			SiteItf skeleton = (SiteItf) UnicastRemoteObject.exportObject(new SiteImpl(nn), (port+nn));
+			Registry registre= LocateRegistry.createRegistry((port+nn));
 			registre.rebind("Node_"+n, skeleton);
 		} catch (RemoteException e) {
-			System.out.println("erreur server");
+			e.printStackTrace();
 		}
 	}
 

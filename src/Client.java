@@ -7,6 +7,8 @@ import java.rmi.registry.Registry;
 public class Client {
 	
 	private static int port = 1098;
+	private static Registry[] registries;
+	private static SiteItf[] nodes;
 	
 	/**
 	 * 
@@ -28,8 +30,8 @@ public class Client {
 			System.err.println("USAGE : java Client [numero de noeud]\nNombre de noeud >= 1");
 		}
 		
-		SiteItf[] nodes = new SiteItf[nn];
-		Registry[] registries = new Registry[nn];
+		nodes = new SiteItf[nn];
+		registries = new Registry[nn];
 		
 		try {
 			for(int i = 1; i <= nn; i++){
@@ -37,8 +39,9 @@ public class Client {
 				nodes[i-1] = (SiteItf) registries[i-1].lookup("Node_"+i);
 			}
 			
-			if(nodes[0].addFils(nodes[1])) System.out.println("ouaisouaisouais");
-			if(nodes[1].addFils(nodes[0])) System.out.println("ouaisouaisouais");
+			nodes[0].addFils(nodes[1]);
+			
+			nodes[0].getMessage("hello", nodes[0]);
 			
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
