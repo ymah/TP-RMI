@@ -16,7 +16,7 @@ public class Server {
 
 			SiteItf skeleton = (SiteItf) UnicastRemoteObject.exportObject(new SiteImpl(), 10000);
 			Registry registry = LocateRegistry.createRegistry(10000);
-			registry.rebind("Node", skeleton);
+			registry.rebind("noeud1", skeleton);
 
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
