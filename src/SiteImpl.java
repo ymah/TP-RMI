@@ -1,3 +1,5 @@
+
+import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
@@ -7,9 +9,7 @@ public class SiteImpl implements SiteItf {
 	private ArrayList<SiteItf> listeFils;
 	private ArrayList<SiteItf> listePere;
 
-	/**
-	 * 
-	 */
+	
 	public SiteImpl(int id) {
 		this.id = id;
 		this.listeFils = new ArrayList<SiteItf>();
@@ -23,6 +23,8 @@ public class SiteImpl implements SiteItf {
 	 */
 	public void getMessage(String m, SiteItf father) throws RemoteException {
 		synchronized (this) {
+			System.out.println("#########");
+			System.out.println("je suis le Node_"+getId());
 			System.out.println("Message recu de Node_"+father.getId());
 			System.out.println(m);
 		}
@@ -83,19 +85,31 @@ public class SiteImpl implements SiteItf {
 		return false;
 	}
 
-	@Override
+	/* (non-Javadoc)
+	 * @see SiteItf#getId(SiteItf)
+	 */
 	public int getId() throws RemoteException{
 		return this.id;
 	}
 
-	@Override
+	/* (non-Javadoc)
+	 * @see SiteItf#getFils(SiteItf)
+	 */
 	public ArrayList<SiteItf> getFils() throws RemoteException {
 		return this.listeFils;
 	}
 
-	@Override
+	/* (non-Javadoc)
+	 * @see SiteItf#getPere(SiteItf)
+	 */
 	public ArrayList<SiteItf> getPere() throws RemoteException {
 		return this.listePere;
+	}
+
+	@Override
+	public void reset() throws RemoteException {
+		this.listePere.clear();
+		this.listeFils.clear();
 	}
 
 }

@@ -1,10 +1,17 @@
+
+import java.io.Serializable;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-public interface SiteItf extends Remote {
+public interface SiteItf extends Remote, Serializable {
 
 	
+	/**
+	 * get Id of node
+	 * @return
+	 * @throws RemoteException
+	 */
 	public int getId() throws RemoteException;
 	
 	/**
@@ -13,13 +20,11 @@ public interface SiteItf extends Remote {
 	 */
 	public void getMessage(String m, SiteItf father) throws RemoteException;
 
-	
 	/**
 	 * send a message to sons nodes
 	 * @throws RemoteException
 	 */
 	public void sendMessage(String m) throws RemoteException;
-	
 
 	/**
 	 * add a father to current Node
@@ -59,5 +64,11 @@ public interface SiteItf extends Remote {
 	 * @throws RemoteException
 	 */
 	public ArrayList<SiteItf> getPere() throws RemoteException;
+	
+	/**
+	 * reset the lists of fathers and sons
+	 * @throws RemoteException
+	 */
+	public void reset() throws RemoteException;
 	
 }
