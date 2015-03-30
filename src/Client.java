@@ -22,14 +22,14 @@ public class Client {
 	// Addresse du registry
 	private static String registry; 
 		
-	// ensemble des noeuds récupérés grâce au lookup
+	// ensemble des noeuds rÃ©cupÃ©rÃ©s grÃ¢ce au lookup
 	private static SiteItf[] nodes;
 
 	/**
 	 * 
 	 * @param args
 	 * 
-	 * Un argument attendu = nombre de noeuds à lookup.
+	 * Un argument attendu = nombre de noeuds Ã  lookup.
 	 * 
 	 */
 	public static void main(String[] args) {
@@ -39,7 +39,7 @@ public class Client {
 			return;
 		}
 
-		// on récupère l'argument censé être le nombre de noeud à lookup
+		// on rÃ©cupÃ¨re l'argument censÃ© Ãªtre le nombre de noeud Ã  lookup
 		String n = args[0];
 		int nn = Integer.parseInt(n);
 
@@ -51,13 +51,13 @@ public class Client {
 		}
 
 		// construction des tableaux de commande
-		// correspond à un "constructeur"
+		// correspond Ã  un "constructeur"
 		buildcmd();
 		
 		// initialisation du tableau d'interfaces
 		nodes = new SiteItf[nn];
 				
-		// lookup des différents noeuds
+		// lookup des diffÃ©rents noeuds
 		try {
 			for(int i = 1; i <= nn; i++){
 				nodes[i-1] = (SiteItf) Naming.lookup(registry+"/Node_"+i);
@@ -71,7 +71,7 @@ public class Client {
 		}
 
 		/*
-		 * Initialisation terminée, affichage de la partie interactive
+		 * Initialisation terminÃ©e, affichage de la partie interactive
 		 */
 		System.out.println("Build Complete\n########\nNodes array filled.\n");
 		System.out.println("Here you can build the tree / graph :");
@@ -194,7 +194,7 @@ public class Client {
 
 	/**
 	 * @throws RemoteException
-	 *             Crï¿½er l'arbre vu en TP pour les tests Rq : il doit y avoir 6
+	 *             CrÃ¯Â¿Â½er l'arbre vu en TP pour les tests Rq : il doit y avoir 6
 	 *             noeuds ou plus.
 	 */
 	private static void buildCourseTree() throws RemoteException {
@@ -262,7 +262,7 @@ public class Client {
 
 	/**
 	 * @throws RemoteException
-	 *             Listing des noeuds disponnibles, de leur pï¿½re et de leur fils
+	 *             Listing des noeuds disponnibles, de leur pÃ¯Â¿Â½re et de leur fils
 	 */
 	private static void list() throws RemoteException {
 		System.out.println("##############");
