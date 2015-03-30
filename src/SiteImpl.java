@@ -9,8 +9,9 @@ public class SiteImpl implements SiteItf {
 	private ArrayList<SiteItf> listeFils;
 	private ArrayList<SiteItf> listePere;
 	private boolean visited;
+
 	/**
-	 * 
+	 * @param id
 	 */
 	public SiteImpl(int id) {
 		this.id = id;

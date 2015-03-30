@@ -22,6 +22,7 @@ public interface SiteItf extends Remote, Serializable {
 
 	/**
 	 * send a message to sons nodes
+	 * @param m
 	 * @throws RemoteException
 	 */
 	public void sendMessage(String m) throws RemoteException;

@@ -1,0 +1,31 @@
+Réalistion d'une passerelle client/serveur RMI
+Dylan Forest - Mahieddine Yaker
+30/03/15
+
+UTILISATION DU TP :
+
+Nous avons implémentés et testés ce TP via Eclipse, voici donc la démarche de test que nous employons :
+
+Tout d'abord, configurer eclipse pour qu'il lance le rmiregistry :
+	- sous Eclipse -> Run/External Tools/External Tools Configurations
+	- création d'un nouveau Program -> Location : path_to_jdk/bin/rmiregistry.exe
+									-> Working directory : workspace du projet/bin
+									   (sert à relier les .class au registre, rmic automatique pour la génération des stub)
+	- Run
+
+A ce stade, nous avons le rmiregistry lancé et en attente.
+
+La seconde chose à faire est de générer des noeuds, pour cela nous avons développé NodeGenerator(voir README.txt / doc pour plus de détails)
+	- Lancement de NodeGenerator en configurant les paramètres comme suit -> 6 rmi://localhost:1099
+	(Le premier paramètre est le nombre de noeuds à générer, le second l'adresse du registre, par défaut rmiregistry se lance sur le port 1099)
+	
+Nous avons maintenant l'ensemble des noeuds créés et binder sur le registre.
+
+Il nous reste maintenant à lancer le Client pour tester les différentes méthodes :
+	- Lancement de Client.java en configurant les paramètres comme suit -> 6 rmi://localhost:1099
+	(Les mêmes paramètres que pour NodeGenerator, le nombre de noeuds suivi de l'adresse du registre)
+	- Une fois lancé, nous avons accès à un mode 'terminal' permettant d'interagir avec les noeuds.
+	- Tapez help pour afficher la liste des commandes disponnibles.
+	- buildCourseTree permet de générer les liens entre les noeuds pour simuler l'arbre du schéma vu en TP
+	- la méthode send hello 1 va propager le message hello depuis le première noeud, on aura un affichage 
+	du suivi du message par les noeuds qui se nommeront, et l'afficheront en donnant le noeud duquel ils l'ont reçus.

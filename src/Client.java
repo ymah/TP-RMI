@@ -25,10 +25,7 @@ public class Client {
 	
 	// Port du rmiregistry
 	private static String registry; 
-	
-	// ensemble des registres -> si on veut faire un registre par noeud
-	//private static Registry[] registries;
-	
+		
 	// ensemble des noeuds récupérés grâce au lookup
 	private static SiteItf[] nodes;
 	
@@ -59,22 +56,17 @@ public class Client {
 		// correspond à un "constructeur"
 		buildcmd();
 		
-		// initialisation des tableaux d'interface et de registre
+		// initialisation du tableau d'interfaces
 		nodes = new SiteItf[nn];
-		//registries = new Registry[nn];
 				
 		// lookup des différents noeuds
 		try {
 			for(int i = 1; i <= nn; i++){
-				//registries[i-1] = LocateRegistry.getRegistry(port);
-				//nodes[i-1] = (SiteItf) registries[i-1].lookup("Node_"+i);
 				nodes[i-1] = (SiteItf) Naming.lookup(registry+"/Node_"+i);
 			}					
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (NotBoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
@@ -122,9 +114,6 @@ public class Client {
 							}else help(3);
 						}
 						break;
-//					case "display":
-//						display();
-//						break;
 					case "send":
 						if(cmds.length < 3) help(4);
 						else{
