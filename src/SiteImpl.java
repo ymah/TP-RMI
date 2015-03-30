@@ -16,6 +16,7 @@ public class SiteImpl implements SiteItf {
 		this.id = id;
 		this.listeFils = new ArrayList<SiteItf>();
 		this.listePere = new ArrayList<SiteItf>();
+		this.visited = false;
 	}
 
 	/*
@@ -26,13 +27,13 @@ public class SiteImpl implements SiteItf {
 	public void getMessage(String m, SiteItf father) throws RemoteException {
 
 		synchronized (this) {
-			if(!visited)
+			if(visited)
 				return ;
 			System.out.println("#########");
 			System.out.println("je suis le Node_"+getId());
 			System.out.println("Message recu de Node_"+father.getId());
 			System.out.println(m);
-			this.visited = false;
+			this.visited = true;
 		}
 		this.sendMessage(m);
 	}
@@ -116,6 +117,11 @@ public class SiteImpl implements SiteItf {
 	public void reset() throws RemoteException {
 		this.listePere.clear();
 		this.listeFils.clear();
+	}
+
+	@Override
+	public void resetVisited() throws RemoteException {
+		this.visited = false;
 	}
 
 }

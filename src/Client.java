@@ -237,6 +237,8 @@ public class Client {
 	 * Envoi du message m au noeud node
 	 */
 	private static void send(String m, SiteItf node) throws RemoteException {
+		for(SiteItf n : nodes)
+			n.resetVisited();
 		node.getMessage(m, node);
 	}
 

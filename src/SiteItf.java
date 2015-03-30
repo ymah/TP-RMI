@@ -71,4 +71,9 @@ public interface SiteItf extends Remote, Serializable {
 	 */
 	public void reset() throws RemoteException;
 	
+	/**
+	 * reset the visited value for another send threw the tree
+	 * @throws RemoteException
+	 */
+	public void resetVisited() throws RemoteException;
 }
