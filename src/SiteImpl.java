@@ -79,8 +79,8 @@ public class SiteImpl implements SiteItf {
 	 */
 	public boolean rmFils(SiteItf fils) throws RemoteException{
 		if(this.listePere.contains(fils))
+			return this.listePere.remove(fils);
 		return false;
-		return this.listePere.remove(fils);
 	}
 
 	@Override
@@ -88,6 +88,14 @@ public class SiteImpl implements SiteItf {
 		return this.id;
 	}
 
+	@Override
+	public ArrayList<SiteItf> getFils() throws RemoteException {
+		return this.listeFils;
+	}
 
+	@Override
+	public ArrayList<SiteItf> getPere() throws RemoteException {
+		return this.listePere;
+	}
 
 }

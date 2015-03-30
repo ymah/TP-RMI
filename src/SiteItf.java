@@ -1,5 +1,6 @@
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 public interface SiteItf extends Remote {
 
@@ -44,5 +45,19 @@ public interface SiteItf extends Remote {
 	 * @return
 	 */
 	public boolean rmFils(SiteItf fils) throws RemoteException;
+	
+	/**
+	 * return an arrayList containing the sons of the current Node
+	 * @return
+	 * @throws RemoteException
+	 */
+	public ArrayList<SiteItf> getFils() throws RemoteException;
+	
+	/**
+	 * return an arrayList containing the fathers of the current Node
+	 * @return
+	 * @throws RemoteException
+	 */
+	public ArrayList<SiteItf> getPere() throws RemoteException;
 	
 }
